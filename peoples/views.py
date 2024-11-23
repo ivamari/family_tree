@@ -14,15 +14,16 @@ from peoples.serializers import PeopleSerializer, AncestorSerializer
     list=extend_schema(summary='Список людей', tags=['Люди']),
     create=extend_schema(summary='Добавить человека',
                          tags=['Люди']),
-    partial_update=extend_schema(summary='Изменить параметры частично',
+    update=extend_schema(summary='Изменить параметры',
                                  tags=['Люди']),
-    destroy=extend_schema(summary='Удалить человека',
-                          tags=['Люди']),
 )
-class PeopleView(ModelViewSet):
+class PeopleView(GenericViewSet, mixins.RetrieveModelMixin,
+                 mixins.ListModelMixin, mixins.CreateModelMixin,
+                 mixins.UpdateModelMixin):
     queryset = People.objects.all()
     serializer_class = PeopleSerializer
-    http_method_names = ('get', 'post', 'patch', 'delete',)
+    http_method_names = ('get', 'post', 'put', )
+    lookup_url_kwarg = 'person_id'
 
 
 @extend_schema_view(
@@ -59,19 +60,19 @@ class AncestorView(GenericViewSet, mixins.RetrieveModelMixin):
             }
 
             if depth > 1:
-                data["mother"] = get_ancestors(person.mother, depth - 1)
-                data["father"] = get_ancestors(person.father, depth - 1)
+                data["mother"] = get_ancestors(person.mother_id, depth - 1)
+                data["father"] = get_ancestors(person.father_id, depth - 1)
             else:
                 data["mother"] = {
-                    "id": person.mother.id,
-                    "first_name": person.mother.first_name,
-                    "last_name": person.mother.last_name,
-                } if person.mother else None
+                    "id": person.mother_id.id,
+                    "first_name": person.mother_id.first_name,
+                    "last_name": person.mother_id.last_name,
+                } if person.mother_id else None
                 data["father"] = {
-                    "id": person.father.id,
-                    "first_name": person.father.first_name,
-                    "last_name": person.father.last_name,
-                } if person.father else None
+                    "id": person.father_id.id,
+                    "first_name": person.father_id.first_name,
+                    "last_name": person.father_id.last_name,
+                } if person.father_id else None
 
             return data
 

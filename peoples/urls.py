@@ -3,11 +3,11 @@ from rest_framework.routers import DefaultRouter
 
 from peoples.views import PeopleView, AncestorView
 
-router_v1 = DefaultRouter()
+router_people = DefaultRouter()
 
-router_v1.register(r'', PeopleView, 'hotels')
-router_v1.register(r'people', AncestorView, basename='people')
+router_people.register(r'', PeopleView, 'people')
 
 urlpatterns = [
-    path('hotels/', include(router_v1.urls)),
+    path('people/', include(router_people.urls)),
+    path('people/<int:person_id>/ancestors/', AncestorView.as_view({'get': 'retrieve'})),
 ]

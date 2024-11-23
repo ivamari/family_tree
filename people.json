@@ -1,0 +1,152 @@
+[
+{
+    "model": "peoples.people",
+    "pk": 1,
+    "fields": {
+        "first_name": "Юлия",
+        "last_name": "Морозова",
+        "mother": null,
+        "father": null
+    }
+},
+{
+    "model": "peoples.people",
+    "pk": 2,
+    "fields": {
+        "first_name": "Павел",
+        "last_name": "Морозов",
+        "mother": null,
+        "father": null
+    }
+},
+{
+    "model": "peoples.people",
+    "pk": 3,
+    "fields": {
+        "first_name": "Надежда",
+        "last_name": "Вяземская",
+        "mother": 1,
+        "father": 2
+    }
+},
+{
+    "model": "peoples.people",
+    "pk": 4,
+    "fields": {
+        "first_name": "Павел",
+        "last_name": "Вяземскийй",
+        "mother": null,
+        "father": null
+    }
+},
+{
+    "model": "peoples.people",
+    "pk": 5,
+    "fields": {
+        "first_name": "Екатерина",
+        "last_name": "Вяземская",
+        "mother": null,
+        "father": null
+    }
+},
+{
+    "model": "peoples.people",
+    "pk": 6,
+    "fields": {
+        "first_name": "Алексей",
+        "last_name": "Вяземский",
+        "mother": 5,
+        "father": 4
+    }
+},
+{
+    "model": "peoples.people",
+    "pk": 7,
+    "fields": {
+        "first_name": "Иван",
+        "last_name": "Вяземский",
+        "mother": 3,
+        "father": 6
+    }
+},
+{
+    "model": "peoples.people",
+    "pk": 8,
+    "fields": {
+        "first_name": "Любовь",
+        "last_name": "Давранова",
+        "mother": null,
+        "father": null
+    }
+},
+{
+    "model": "peoples.people",
+    "pk": 9,
+    "fields": {
+        "first_name": "Владимир",
+        "last_name": "Давранов",
+        "mother": null,
+        "father": null
+    }
+},
+{
+    "model": "peoples.people",
+    "pk": 10,
+    "fields": {
+        "first_name": "Олеся",
+        "last_name": "Иванчук",
+        "mother": 8,
+        "father": 9
+    }
+},
+{
+    "model": "peoples.people",
+    "pk": 11,
+    "fields": {
+        "first_name": "Валентина",
+        "last_name": "Иванчук",
+        "mother": null,
+        "father": null
+    }
+},
+{
+    "model": "peoples.people",
+    "pk": 12,
+    "fields": {
+        "first_name": "Анатолий",
+        "last_name": "Иванчук",
+        "mother": null,
+        "father": null
+    }
+},
+{
+    "model": "peoples.people",
+    "pk": 13,
+    "fields": {
+        "first_name": "Андрей",
+        "last_name": "Иванчук",
+        "mother": 11,
+        "father": 12
+    }
+},
+{
+    "model": "peoples.people",
+    "pk": 14,
+    "fields": {
+        "first_name": "Мария",
+        "last_name": "Иванчук",
+        "mother": 10,
+        "father": 13
+    }
+},
+{
+    "model": "peoples.people",
+    "pk": 15,
+    "fields": {
+        "first_name": "Василиса",
+        "last_name": "Вяземская",
+        "mother": 14,
+        "father": 7
+    }
+}
+]

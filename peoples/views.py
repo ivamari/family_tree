@@ -46,7 +46,7 @@ class AncestorView(GenericViewSet, mixins.RetrieveModelMixin):
     serializer_class = AncestorSerializer
 
     def retrieve(self, request, *args, **kwargs):
-        person_id = kwargs.get('pk')
+        person_id = kwargs.get('person_id')
         depth = int(request.GET.get('depth', 0))
 
         def get_ancestors(person, depth):

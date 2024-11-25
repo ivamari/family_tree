@@ -3,7 +3,7 @@ from drf_spectacular.utils import (extend_schema_view, extend_schema,
 from rest_framework import mixins
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
-from rest_framework.viewsets import GenericViewSet, ModelViewSet
+from rest_framework.viewsets import GenericViewSet
 from peoples.models import People
 from peoples.serializers import PeopleSerializer, AncestorSerializer
 
@@ -47,10 +47,11 @@ class AncestorView(GenericViewSet, mixins.RetrieveModelMixin):
 
     def retrieve(self, request, *args, **kwargs):
         person_id = kwargs.get('person_id')
-        depth = int(request.GET.get('depth', 0))
+        depth = request.GET.get('depth')
+        depth = int(depth) if depth is not None else None
 
         def get_ancestors(person, depth):
-            if depth == 0 or not person:
+            if not person:
                 return None
 
             data = {
@@ -59,20 +60,16 @@ class AncestorView(GenericViewSet, mixins.RetrieveModelMixin):
                 "last_name": person.last_name,
             }
 
-            if depth > 1:
-                data["mother"] = get_ancestors(person.mother_id, depth - 1)
-                data["father"] = get_ancestors(person.father_id, depth - 1)
-            else:
-                data["mother"] = {
-                    "id": person.mother_id.id,
-                    "first_name": person.mother_id.first_name,
-                    "last_name": person.mother_id.last_name,
-                } if person.mother_id else None
-                data["father"] = {
-                    "id": person.father_id.id,
-                    "first_name": person.father_id.first_name,
-                    "last_name": person.father_id.last_name,
-                } if person.father_id else None
+            if depth is None or depth > 0:
+                next_depth = depth - 1 if depth is not None else None
+
+                mother = person.mother_id
+                father = person.father_id
+
+                if mother:
+                    data["mother"] = get_ancestors(mother, next_depth)
+                if father:
+                    data["father"] = get_ancestors(father, next_depth)
 
             return data
 

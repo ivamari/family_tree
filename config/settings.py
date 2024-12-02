@@ -105,3 +105,30 @@ STATIC_URL = 'static/'
 
 # ========== DEFAULT PRIMARY KEY FIELD TYPE ==========
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# ========== LOGGING CONFIGURATION ==========
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
+}
+
+if DUMP_SQL:
+    LOGGING['handlers']['console']['level'] = 'DEBUG'
+    LOGGING['loggers']['django.db.backends'] = {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+        'propagate': False,
+    }

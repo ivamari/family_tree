@@ -10,8 +10,8 @@ class PeopleSerializer(serializers.ModelSerializer):
             'id',
             'first_name',
             'last_name',
-            'mother_id',
-            'father_id',
+            'mother',
+            'father',
         )
 
 
@@ -24,7 +24,8 @@ class AncestorSerializer(serializers.ModelSerializer):
         fields = ('id',
                   'first_name',
                   'last_name',
-                  'mother', 'father')
+                  'mother',
+                  'father',)
 
     def get_mother(self, obj):
         return AncestorSerializer(obj.mother_id).data if obj.mother else None
